@@ -138,11 +138,11 @@ echo Cleaned!
 
 echo [1;32mCleaning IP Config... (hidden for security reasons)[1;31m
 ipconfig /flushdns >nul
-ipconfig /release >nul
-netsh winsock reset >nul
 ipconfig /registerdns >nul
+ipconfig /release >nul
 ipconfig /renew >nul
-:PowerShell "Disable-MMAgent -MemoryCompression" >nul
+netsh winsock reset >nul
+PowerShell "Disable-MMAgent -MemoryCompression" >nul
 echo IP Config cleaned!
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
