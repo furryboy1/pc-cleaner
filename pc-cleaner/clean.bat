@@ -142,7 +142,7 @@ ipconfig /release >nul
 netsh winsock reset >nul
 ipconfig /registerdns >nul
 ipconfig /renew >nul
-PowerShell "Disable-MMAgent -MemoryCompression" >nul
+:PowerShell "Disable-MMAgent -MemoryCompression" >nul
 echo IP Config cleaned!
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
