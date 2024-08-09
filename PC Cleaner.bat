@@ -14,11 +14,13 @@ echo Downloading cleaner...
 bitsadmin /transfer "FetchScript" "%url%" "%script%" >nul
 
 if %errorlevel% equ -2147024809 (
+    echo.
     echo ERROR: Failed to download cleaner. Error code: -2147024809
     echo Press any key to exit...
     pause >nul
     exit /b 1
 ) else (
+    echo.
     echo Download successful.
     echo Running cleaner...
     %script%
