@@ -134,15 +134,16 @@ del /q /s "%localappdata%\Bloxstrap\Logs\*"
 echo.
 echo [1;32mCleaning unnecessary system files...[1;31m
 cleanmgr /sagerun:1
-echo Cleaned
+echo Cleaned!
 
-echo Cleaning IP Config... (hidden for security reasons)
+echo [1;32mCleaning IP Config... (hidden for security reasons)[1;31m
 ipconfig /flushdns >nul
 ipconfig /release >nul
 netsh winsock reset >nul
 ipconfig /registerdns >nul
 ipconfig /renew >nul
 PowerShell "Disable-MMAgent -MemoryCompression" >nul
+echo IP Config cleaned!
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.
