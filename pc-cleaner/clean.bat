@@ -24,22 +24,22 @@ title PC Cleaner - Cleaning... - https://github.com/FurryBoyYT/pc-cleaner
 :----user-system----
 echo [1;32mCleaning user temp...[1;31m
 del /f /s /q "%temp%\*"
-for /d %%i in ("%temp%\*") do ( rmdir /s /q "%%i" )
+for /d %%i in (%temp%\*) do ( rmdir /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning windows temp...[1;31m
 del /s /f /q "C:\Windows\Temp\*"
-for /d %%i in ("C:\Windows\Temp\*") do ( rmdir /s /q "%%i" )
+for /d %%i in (C:\Windows\Temp\*) do ( rmdir /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning C: temp...[1;31m
 del /s /f /q "C:\temp\*"
-for /d %%i in ("C:\temp\*") do ( rmdir /s /q "%%i" )
+for /d %%i in (C:\temp\*) do ( rmdir /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning system temp...[1;31m
 del /s /f /q "C:\Windows\SystemTemp\*"
-for /d %%i in ("C:\Windows\SystemTemp\*") do ( rmdir /s /q "%%i" )
+for /d %%i in (C:\Windows\SystemTemp\*) do ( rmdir /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning windows error report cache...[1;31m
