@@ -1,5 +1,5 @@
 @echo off
-title PC Cleaner - Loading...
+title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 setlocal enabledelayedexpansion
 
 set "url=https://github.com/FurryBoyYT/pc-cleaner/raw/main/pc-cleaner/clean.bat"
