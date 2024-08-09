@@ -134,21 +134,22 @@ del /q /s "%localappdata%\Bloxstrap\Logs\*"
 echo.
 echo [1;32mCleaning unnecessary system files...[1;31m
 cleanmgr /sagerun:1
+echo Cleaned
 
 echo.
-echo [1;32mIPCONFIG: Flushing DNS...[1;31m
+echo IPCONFIG: Flushing DNS...
 ipconfig /flushdns >nul
-echo [1;32mIPCONFIG: Flushed DNS![1;31m
+echo IPCONFIG: Flushed DNS!
 
 echo.
-echo [1;32mIPCONFIG: Releasing...[1;31m
+echo IPCONFIG: Releasing...
 ipconfig /release >nul
-echo [1;32mIPCONFIG: Released![1;31m
+echo IPCONFIG: Released!
 
 echo.
-echo [1;32mIPCONFIG: Renewing...[1;31m
+echo IPCONFIG: Renewing...
 ipconfig /renew >nul
-echo [1;32mIPCONFIG: Renewed![1;31m
+echo IPCONFIG: Renewed!
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.
