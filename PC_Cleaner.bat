@@ -25,5 +25,6 @@ if %errorlevel% equ -2147024809 (
     echo.
     echo Download successful.
     echo Running cleaner...
-    %script%
+    title PC Cleaner - Running... - https://github.com/FurryBoyYT/pc-cleaner
+    "%script%"
 )
