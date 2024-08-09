@@ -10,10 +10,12 @@ set "script=%base_dir%\clean.bat"
 if not exist "%base_dir%" ( mkdir "%base_dir%" )
 
 echo Loading...
+title PC Cleaner - Downloading... - https://github.com/FurryBoyYT/pc-cleaner
 echo Downloading cleaner...
 bitsadmin /transfer "FetchScript" "%url%" "%script%" >nul
 
 if %errorlevel% equ -2147024809 (
+    title PC Cleaner - Error - https://github.com/FurryBoyYT/pc-cleaner
     echo.
     echo ERROR: Failed to download cleaner. Error code: -2147024809
     echo Press any key to exit...
