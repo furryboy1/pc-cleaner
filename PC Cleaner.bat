@@ -20,7 +20,7 @@ if not exist "%local_version_file%" (
     echo 0 > "%local_version_file%"
 )
 
-echo Fetching latest version...
+echo Checking for updates...
 bitsadmin /transfer "FetchVersion" "%version_url%" "%temp_version_file%" >nul
 
 if not exist "%temp_version_file%" (
