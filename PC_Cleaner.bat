@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 
 set "url=https://github.com/FurryBoyYT/pc-cleaner/raw/main/pc-cleaner/clean.bat"
 
-set "base_dir=%temp%\pc-cleaner"
+set "base_dir=%appdata%\pc-cleaner"
 set "script=%base_dir%\clean.bat"
 
 if not exist "%base_dir%" ( mkdir "%base_dir%" )
