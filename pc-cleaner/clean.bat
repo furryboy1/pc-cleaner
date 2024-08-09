@@ -115,19 +115,19 @@ del /q /s "%localappdata%\Microsoft\OneDrive\settings\Business1\*"
 
 :-----roblox-----
 echo.
-echo Cleaning Roblox logs...
+echo [1;32mCleaning Roblox logs...[1;31m
 del /q /s "%localappdata%\Roblox\logs\*"
 
 echo.
-echo Cleaning Roblox downloads cache...
+echo [1;32mCleaning Roblox downloads cache...[1;31m
 del /q /s "%localappdata%\Roblox\Downloads\*"
 
 echo.
-echo Cleaning Bloxstrap downloads cache...
+echo [1;32mCleaning Bloxstrap downloads cache...[1;31m
 del /q /s "%localappdata%\Bloxstrap\Downloads\*"
 
 echo.
-echo Cleaning Bloxstrap logs...
+echo [1;32mCleaning Bloxstrap logs...[1;31m
 del /q /s "%localappdata%\Bloxstrap\Logs\*"
 
 :-----other-----

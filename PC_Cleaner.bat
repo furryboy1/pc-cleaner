@@ -12,7 +12,8 @@ if not exist "%base_dir%" ( mkdir "%base_dir%" )
 echo Loading...
 title PC Cleaner - Downloading... - https://github.com/FurryBoyYT/pc-cleaner
 echo Downloading cleaner...
-bitsadmin /transfer "FetchScript" "%url%" "%script%" >nul
+del /q "%script%" >nul
+bitsadmin /transfer "FetchScript" "%url%" "%script%"
 
 if %errorlevel% equ -2147024809 (
     title PC Cleaner - Error - https://github.com/FurryBoyYT/pc-cleaner
