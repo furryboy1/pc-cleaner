@@ -136,14 +136,15 @@ echo [1;32mCleaning unnecessary system files...[1;31m
 cleanmgr /sagerun:1
 echo Cleaned!
 
+echo.
 echo [1;32mConfigurating IP Config... (hidden for security reasons)[1;31m
-ipconfig /flushdns
-ipconfig /registerdns
-ipconfig /release
-ipconfig /renew
-netsh winsock reset
+ipconfig /flushdns >nul
+ipconfig /registerdns >nul
+ipconfig /release >nul
+ipconfig /renew >nul
+netsh winsock reset >nul
 PowerShell -Command "Disable-MMAgent -MemoryCompression" >nul
-echo IP Config configuration complete!
+echo IP Config configuration complete! Restart is required to take changes.
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.
