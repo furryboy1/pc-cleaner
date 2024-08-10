@@ -8,7 +8,7 @@ if %errorLevel% == 0 (
 ) else (
     echo Requesting administrative privileges...
     powershell -Command "Start-Process '%~0' -Verb runAs"
-    exit
+    exit /b
 )
 
 :admin
