@@ -137,6 +137,10 @@ cleanmgr /sagerun:1
 echo Cleaned!
 
 echo.
+echo [1;32mCleaning crash dump files...[1;31m
+del /q /s "%localappdata%\CrashDumps\*"
+
+echo.
 echo [1;32mConfigurating IP Config... (hidden for security reasons)[1;31m
 ipconfig /flushdns >nul
 ipconfig /registerdns >nul
