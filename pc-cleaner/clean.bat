@@ -14,6 +14,7 @@ if %errorLevel% == 0 (
 :admin
 echo A restore point will be created incase something bad happened, you can restore your pc back after!
 wmic /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "PC Cleaner restore point", 100, 7
+cls
 
 title PC Cleaner - Starting... - https://github.com/FurryBoyYT/pc-cleaner
 for /l %%i in (5,-1,1) do (
