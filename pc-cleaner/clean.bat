@@ -12,6 +12,9 @@ if %errorLevel% == 0 (
 )
 
 :admin
+echo A restore point will be created incase something bad happened, you can restore your pc back after!
+wmic /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "PC Cleaner restore point", 100, 7
+
 title PC Cleaner - Starting... - https://github.com/FurryBoyYT/pc-cleaner
 for /l %%i in (5,-1,1) do (
     echo [1;32mCleaning process will start in [0;33m%%i seconds[1;32m!
@@ -21,25 +24,25 @@ for /l %%i in (5,-1,1) do (
 )
 title PC Cleaner - Cleaning... - https://github.com/FurryBoyYT/pc-cleaner
 
-:----user-system----
+:----system----
 echo [1;32mCleaning user temp...[1;31m
 del /f /s /q "%temp%\*"
-for /d %%i in (%temp%\*) do ( rmdir /s /q "%%i" )
+for /d %%i in (%temp%\*) do ( rd /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning windows temp...[1;31m
-del /s /f /q "C:\Windows\Temp\*"
-for /d %%i in (C:\Windows\Temp\*) do ( rmdir /s /q "%%i" )
+del /s /f /q "%systemroot%\Temp\*"
+for /d %%i in (%systemroot%\Temp\*) do ( rd /s /q "%%i" )
 
 echo.
-echo [1;32mCleaning C: temp...[1;31m
-del /s /f /q "C:\temp\*"
-for /d %%i in (C:\temp\*) do ( rmdir /s /q "%%i" )
+echo [1;32mCleaning system drive temp...[1;31m
+del /s /f /q "%systemdrive%\temp\*"
+for /d %%i in (%systemroot%\temp\*) do ( rd /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning system temp...[1;31m
-del /s /f /q "C:\Windows\SystemTemp\*"
-for /d %%i in (C:\Windows\SystemTemp\*) do ( rmdir /s /q "%%i" )
+del /s /f /q "%systemroot%\SystemTemp\*"
+for /d %%i in (%systemroot%\SystemTemp\*) do ( rd /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning windows error report cache...[1;31m
@@ -48,10 +51,10 @@ del /s /f /q "C:\ProgramData\Microsoft\Windows\WER\ReportArchive\*"
 
 echo.
 echo [1;32mCleaning windows prefetch...[1;31m
-del /s /f /q "C:\Windows\prefetch\*"
+del /s /f /q "%systemroot%\prefetch\*"
 
 echo.
-echo [1;32mCleaning Windows Registry...[1;31m
+echo [1;32mCleaning windows registry cache...[1;31m
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs" /f
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 
@@ -141,13 +144,21 @@ echo [1;32mCleaning crash dump files...[1;31m
 del /q /s "%localappdata%\CrashDumps\*"
 
 echo.
+echo [1;32mCleaning downloaded program files...[1;31m
+del /q "%systemroot%\Downloaded Program Files\*"
+
+echo.
+echo [1;32mEmptying recycle bin...[1;31m
+rd /s /q "%systemdrive%\$Recycle.bin"
+
+echo.
 echo [1;32mConfigurating IP Config... (hidden for security reasons)[1;31m
 ipconfig /flushdns >nul
 ipconfig /registerdns >nul
 ipconfig /release >nul
 ipconfig /renew >nul
 netsh winsock reset >nul
-PowerShell -Command "Disable-MMAgent -MemoryCompression" >nul
+powershell -Command "Disable-MMAgent -MemoryCompression" >nul
 echo IP Config configuration complete! Restart is required to take changes.
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
@@ -156,4 +167,4 @@ echo [1;32mPC Cleaning finished!
 echo Exiting in 10 seconds.
 timeout /nobreak /t 10 >nul
 exit /b
-:-----end-----
+:-----end----- 
