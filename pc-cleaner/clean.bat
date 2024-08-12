@@ -1,5 +1,6 @@
 :----start----
 @echo off
+cls
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 
 net session >nul 2>&1
