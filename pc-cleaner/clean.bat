@@ -19,8 +19,8 @@ cls
 
 title PC Cleaner - Starting... - https://github.com/FurryBoyYT/pc-cleaner
 for /l %%i in (5,-1,1) do (
-    echo [1;32mCleaning process will start in [0;33m%%i seconds[1;32m!
-    echo [1;31mPlease do not close while it's cleaning![0m
+    echo [1;32mCleaning process will start in [0;33m%%i seconds[1;32m.
+    echo [1;31mPlease do not close while it's cleaning.[0m
     timeout /nobreak /t 1 >nul
     cls
 )
