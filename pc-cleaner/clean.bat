@@ -155,13 +155,20 @@ rd /s /q "%systemdrive%\$Recycle.bin"
 
 echo.
 echo [1;32mConfigurating IP Config... (hidden for security reasons)[1;31m
+echo WARNING! Your internet may interrupt during this operation!
 ipconfig /flushdns >nul
+echo Flushed DNS!
 ipconfig /registerdns >nul
+echo Registered DNS!
 ipconfig /release >nul
+echo Released!
 ipconfig /renew >nul
+echo Renewed!
 netsh winsock reset >nul
+echo Reset winsock!
 powershell -Command "Disable-MMAgent -MemoryCompression" >nul
-echo IP Config configuration complete! Restart is required to take changes.
+echo Memory compression disabled!
+echo IP Config configuration complete! Restart is optional to take changes.
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.
