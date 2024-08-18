@@ -155,7 +155,7 @@ rd /s /q "%systemdrive%\$Recycle.bin"
 
 echo.
 echo [1;32mConfigurating IP Config... (hidden for security reasons)[1;31m
-echo WARNING! Your internet may interrupt during this operation!
+echo WARNING! Your internet may interrupt during this operation.
 ipconfig /flushdns >nul
 echo Flushed DNS!
 ipconfig /registerdns >nul
