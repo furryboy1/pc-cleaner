@@ -63,13 +63,13 @@ reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 :----web-browsers----
 echo.
 echo [1;32mCleaning Discord cache...[1;31m
-del /q "%appdata%\discord\Code Cache\*"
+del /q /s "%appdata%\discord\Cache\Cache_Data\*"
+del /q /s "%appdata%\discord\Code Cache\*"
 for /d %%i in (%appdata%\discord\Code Cache\*) do ( rd /s /q "%%i" )
-del /q "%appdata%\discord\GPUCache\*"
-del /q "%appdata%\discord\Cache\Cache_Data\*"
-del /q "%appdata%\discord\DawnWebGPUCache\*"
-del /q "%appdata%\discord\DawnGraphiteCache\*"
-del /q "%appdata%\discord\DawnCache\*"
+del /q /s "%appdata%\discord\GPUCache\*"
+del /q /s "%appdata%\discord\DawnWebGPUCache\*"
+del /q /s "%appdata%\discord\DawnGraphiteCache\*"
+del /q /s "%appdata%\discord\DawnCache\*"
 
 echo.
 echo [1;32mCleaning applications cache...
