@@ -62,6 +62,16 @@ reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 
 :----web-browsers----
 echo.
+echo [1;32mCleaning Discord cache...[1;31m
+del /q "%appdata%\discord\Code Cache\*"
+for /d %%i in (%appdata%\discord\Code Cache\*) do ( rd /s /q "%%i" )
+del /q "%appdata%\discord\GPUCache\*"
+del /q "%appdata%\discord\Cache\Cache_Data\*"
+del /q "%appdata%\discord\DawnWebGPUCache\*"
+del /q "%appdata%\discord\DawnGraphiteCache\*"
+del /q "%appdata%\discord\DawnCache\*"
+
+echo.
 echo [1;32mCleaning applications cache...
 echo Google[1;31m
 del /q /s "%localappdata%\Google\Chrome\User Data\Default\Cache\*"
@@ -173,6 +183,7 @@ echo IP Config configuration complete! Restart is required to take changes.
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.
 echo [1;32mPC Cleaning finished!
+echo [1;31mWeb browsers/Discord might be buggy because of cache cleaning![1;32m
 echo Exiting in 10 seconds.
 timeout /nobreak /t 10 >nul
 exit /b
