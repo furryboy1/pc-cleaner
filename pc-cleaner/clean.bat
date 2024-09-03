@@ -67,9 +67,25 @@ del /q /s "%appdata%\discord\Cache\Cache_Data\*"
 del /q /s "%appdata%\discord\Code Cache\*"
 for /d %%i in (%appdata%\discord\Code Cache\*) do ( rd /s /q "%%i" )
 del /q /s "%appdata%\discord\GPUCache\*"
-del /q /s "%appdata%\discord\DawnWebGPUCache\*"
-del /q /s "%appdata%\discord\DawnGraphiteCache\*"
-del /q /s "%appdata%\discord\DawnCache\*"
+
+echo.
+echo [1;32mCleaning NVIDIA GeForce Experience cache...[1;31m
+del /q /s "%localappdata%\NVIDIA Corporation\NVIDIA GeForce Experience\CefCache\Cache\*"
+del /q /s "%localappdata%\NVIDIA Corporation\NVIDIA GeForce Experience\CefCache\GPUCache\*"
+
+echo.
+echo [1;32mCleaning Visual Studio Code cache...[1;31m
+del /q /s "%appdata%\Code\Cache\Cache_Data\*"
+
+echo.
+echo [1;32mCleaning Python pip cache...[1;31m
+del /q /s "%localappdata%\pip\cache\*"
+for /d %%i in (%localappdata%\pip\cache\*) do ( rd /s /q "%%i" )
+
+echo.
+echo [1;32mCleaning Nodejs npm cache...[1;31m
+del /q /s "%localappdata%\npm-cache\*"
+for /d %%i in (%localappdata%\npm-cache\*) do ( rd /s /q "%%i" )
 
 echo.
 echo [1;32mCleaning applications cache...
@@ -108,25 +124,18 @@ echo.
 echo [1;32mTor[1;31m
 del /q /s "%localappdata%\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\cache2\entries\*"
 
-:echo.
-:echo [1;32mPowerToys[1;31m
-:del /q /s "%localappdata%\Microsoft\PowerToys\*\*"
-
 echo.
 echo [1;32mSteam[1;31m
 del /q /s "%localappdata%\Steam\htmlcache\*"
 
-:echo.
-:echo [1;32mVMware[1;31m
-:del /q /s "%appdata%\VMware\*"
-
 echo.
 echo [1;32mGithub Desktop[1;31m
-del /q /s "%appdata%\GitHub Desktop\Cache\*"
+del /q /s "%appdata%\GitHub Desktop\logs\*"
 
 echo.
 echo [1;32mOneDrive[1;31m
 del /q /s "%localappdata%\Microsoft\OneDrive\settings\Business1\*"
+del /q /s "%localappdata%\Microsoft\OneDrive\logs\Common\*0"
 
 :-----roblox-----
 echo.
