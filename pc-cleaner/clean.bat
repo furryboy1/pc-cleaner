@@ -135,7 +135,7 @@ del /q /s "%appdata%\GitHub Desktop\logs\*"
 echo.
 echo [1;32mOneDrive[1;31m
 del /q /s "%localappdata%\Microsoft\OneDrive\settings\Business1\*"
-del /q /s "%localappdata%\Microsoft\OneDrive\logs\Common\*0"
+del /q /s "%localappdata%\Microsoft\OneDrive\logs\Common\*"
 
 :-----roblox-----
 echo.
