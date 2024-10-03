@@ -16,10 +16,8 @@ C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Invoke-WebRe
 
 if %errorlevel% neq 0 (
     title PC Cleaner - Error - https://github.com/FurryBoyYT/pc-cleaner
-    echo.
-    echo ERROR: Failed to get cleaner
-    echo POWERSHELL_WEB_REQUEST_ERROR_CODE: %errorlevel%
-    echo.
+    echo ERROR: Failed to fetch cleaner!
+    echo Error code: %errorlevel%
     echo Press any key to exit...
     pause >nul
     exit /b 1
