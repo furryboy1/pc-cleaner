@@ -62,13 +62,6 @@ reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 
 :----web-browsers----
 echo.
-echo [1;32mCleaning Discord cache...[1;31m
-del /q /s "%appdata%\discord\Cache\Cache_Data\*"
-del /q /s "%appdata%\discord\Code Cache\*"
-for /d %%i in (%appdata%\discord\Code Cache\*) do ( rd /s /q "%%i" )
-del /q /s "%appdata%\discord\GPUCache\*"
-
-echo.
 echo [1;32mCleaning NVIDIA GeForce Experience cache...[1;31m
 del /q /s "%localappdata%\NVIDIA Corporation\NVIDIA GeForce Experience\CefCache\Cache\*"
 del /q /s "%localappdata%\NVIDIA Corporation\NVIDIA GeForce Experience\CefCache\GPUCache\*"

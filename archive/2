@@ -1,0 +1,6 @@
+echo.
+echo [1;32mCleaning Discord cache...[1;31m
+del /q /s "%appdata%\discord\Cache\Cache_Data\*"
+del /q /s "%appdata%\discord\Code Cache\*"
+for /d %%i in (%appdata%\discord\Code Cache\*) do ( rd /s /q "%%i" )
+del /q /s "%appdata%\discord\GPUCache\*"
