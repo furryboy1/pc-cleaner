@@ -127,9 +127,10 @@ echo.
 echo [1;32mPC Cleaning finished!
 echo Exiting in 10 seconds.
 if %IS_PENDING_UPDATES% == 1 (
-    echo [0;31mThere was a problem while attempting to clean some of the files:
-    echo Unable to clean software distribution download cache:
-    echo There are pending windows updates, please update and try running the cleaner again!
+    echo W_W_W
+    @REM echo [0;31mThere was a problem while attempting to clean some of the files:
+    @REM echo Unable to clean software distribution download cache:
+    @REM echo There are pending windows updates, please update and try running the cleaner again!
 )
 timeout /nobreak /t 10 > nul
 exit /b
