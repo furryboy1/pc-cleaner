@@ -56,7 +56,10 @@ echo [1;32mCleaning windows prefetch...[1;31m
 del /s /f /q "%systemroot%\prefetch\*"
 
 echo.
-echo [1;32mCleaning windows registry cache...[1;31m
+echo [1;32mCleaning registry cache...[1;31m
+reg delete "HKEY_CLASSES_ROOT\Local Settings\MuiCache" /f
+reg delete "HKEY_CURRENT_USER\Software\Classes\Local Settings\MuiCache" /f
+reg delete "HKEY_USERS\.DEFAULT\Software\Classes\Local Settings\MuiCache" /f
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs" /f
 reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
 
