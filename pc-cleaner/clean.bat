@@ -123,7 +123,7 @@ netsh winsock reset > nul
 echo Reset winsock!
 powershell -Command "Disable-MMAgent -MemoryCompression" > nul
 echo Memory compression disabled!
-echo [0;31mIP Config configuration complete! A PC restart is required to take changes.
+echo [0;31mIP Config configuration complete! A reboot is required to take changes.
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.
