@@ -7,14 +7,22 @@ net session > nul 2>&1
 if %errorLevel% == 0 (
     goto :admin
 ) else (
-    echo Requesting administrative privileges...
+    echo Administrative privileges is required to run the cleaner.
     powershell -Command "Start-Process '%~0' -Verb runAs"
     exit
 )
 
 :admin
-echo A restore point is being created incase something bad happened with the PC Cleaner, you can restore your PC back after!
-wmic /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "PC Cleaner restore point", 100, 7
+echo A restore point is being created in case something goes wrong.
+
+for /f "tokens=2 delims== " %%G in ('wmic volume where "driveletter='C:'" get automount') do (
+    if /i "%%G"=="FALSE" (
+        wmic /namespace:\\root\default path SystemRestore call Enable "C:"
+        echo System protection on C: drive was not enabled to create a restore point. It has now been enabled.
+    )
+)
+
+wmic /namespace:\\root\default path SystemRestore call CreateRestorePoint "PC Cleaner restore point", 100, 7
 cls
 
 title PC Cleaner - Starting... - https://github.com/FurryBoyYT/pc-cleaner

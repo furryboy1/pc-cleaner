@@ -1,5 +1,6 @@
 @echo off
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
+echo Loading...
 setlocal enabledelayedexpansion
 
 set "url=https://github.com/FurryBoyYT/pc-cleaner/raw/main/pc-cleaner/clean.bat"
@@ -8,7 +9,6 @@ set "script_path=%base_dir%\clean.bat"
 
 if not exist "%base_dir%" ( mkdir "%base_dir%" )
 
-echo Loading...
 title PC Cleaner - Downloading... - https://github.com/FurryBoyYT/pc-cleaner
 echo Downloading cleaner...
 
