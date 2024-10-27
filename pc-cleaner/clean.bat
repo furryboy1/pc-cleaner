@@ -1,4 +1,4 @@
-:----start----
+@REM ---start----
 @echo off
 cls
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
@@ -34,7 +34,7 @@ for /l %%i in (5,-1,1) do (
 )
 title PC Cleaner - Cleaning... - https://github.com/FurryBoyYT/pc-cleaner
 
-:----system----
+@REM ---system----
 echo [1;32mCleaning user temp...[1;31m
 del /f /s /q "%temp%\*"
 for /d %%i in (%temp%\*) do ( rd /s /q "%%i" )
@@ -81,7 +81,7 @@ if %errorlevel% == 1 (
     set "IS_PENDING_UPDATES=1"
 )
 
-:-----roblox-----
+@REM ----roblox-----
 echo.
 echo [1;32mCleaning Roblox logs...[1;31m
 del /q /s "%localappdata%\Roblox\logs\*"
@@ -98,7 +98,7 @@ echo.
 echo [1;32mCleaning Bloxstrap logs...[1;31m
 del /q /s "%localappdata%\Bloxstrap\Logs\*"
 
-:-----other-----
+@REM ----other-----
 echo.
 echo [1;32mCleaning unnecessary system files...[1;31m
 cleanmgr /sagerun:1
@@ -111,10 +111,6 @@ del /q /s "%localappdata%\CrashDumps\*"
 echo.
 echo [1;32mCleaning downloaded program files...[1;31m
 del /q "%systemroot%\Downloaded Program Files\*"
-
-echo.
-echo [1;32mEmptying recycle bin...[1;31m
-rd /s /q "%systemdrive%\$Recycle.bin"
 
 echo.
 echo [1;32mConfigurating IP Config... (hidden for security reasons)[1;31m
@@ -143,4 +139,4 @@ if %IS_PENDING_UPDATES% == 1 (
 )
 timeout /nobreak /t 10 > nul
 exit /b
-:-----end-----
+@REM ----end-----
