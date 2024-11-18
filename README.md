@@ -1,7 +1,8 @@
+# - Changelogs:
+fixed disk cleanup getting stuck
+
 # - To add:
 microsoft app cache cleaner
 
 # PC Cleaner
-## Finally released!
-
-## Download in releases!
+## a cleaner to clean unnecessary files to free up storage!

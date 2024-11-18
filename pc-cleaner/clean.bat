@@ -100,9 +100,8 @@ del /q /s "%localappdata%\Bloxstrap\Logs\*"
 
 @REM ----other-----
 echo.
-echo [1;32mCleaning unnecessary system files...[1;31m
-cleanmgr /sagerun:1
-echo Cleaned!
+echo [1;32mStarting cleaning unnecessary system files...[1;31m
+start cleanmgr /sagerun:1
 
 echo.
 echo [1;32mCleaning crash dump files...[1;31m
@@ -123,11 +122,9 @@ ipconfig /release > nul
 echo Released!
 ipconfig /renew > nul
 echo Renewed!
-netsh winsock reset > nul
-echo Reset winsock!
+
 powershell -Command "Disable-MMAgent -MemoryCompression" > nul
 echo Memory compression disabled!
-echo [0;31mIP Config configuration complete! A reboot is required to take changes.
 
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.

@@ -1,0 +1,4 @@
+netsh winsock reset > nul
+echo Reset winsock!
+
+echo [0;31mIP Config configuration complete! A reboot is required to take changes.
