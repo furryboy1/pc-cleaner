@@ -100,10 +100,6 @@ del /q /s "%localappdata%\Bloxstrap\Logs\*"
 
 @REM ----other-----
 echo.
-echo [1;32mStarting cleaning unnecessary system files...[1;31m
-start cleanmgr /sagerun:1
-
-echo.
 echo [1;32mCleaning crash dump files...[1;31m
 del /q /s "%localappdata%\CrashDumps\*"
 

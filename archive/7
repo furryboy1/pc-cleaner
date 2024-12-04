@@ -1,0 +1,5 @@
+: Removed cleanmgr because it's broken for me for now.
+
+echo.
+echo [1;32mStarting cleaning unnecessary system files...[1;31m
+start cleanmgr /sagerun:1
