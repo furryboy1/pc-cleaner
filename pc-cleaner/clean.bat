@@ -5,12 +5,12 @@ cls
 :: --- Initialization ----
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 
-echo [1;33mWARNING^!^!^! The code was rewritten and hasn't been tested.
-echo Use at your own risk and report any issues on the github issues if there are any on the script.
-echo [1;32m---^> [1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues [1;32m^<---
-echo [0mPress any key to continue or close this window to cancel.
+echo [1;33mWARNING^!^!^! The code was rewritten and hasn't been tested.[0m
+echo [1;33mUse at your own risk and report any issues on the GitHub issues page if there are any with the script.[0m
+echo [1;32m^-^-^-^> [1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues [1;32m^<^-^-^-[0m
+echo [0mPress any key to continue or close this window to cancel.[0m
 pause >nul
-echo [1;32mNow continuing with the script, [1;33myou have been warned.
+echo [1;32mNow continuing with the script, [1;33myou have been warned.[0m
 :: Admin Check with better elevation handling
 net session >nul 2>&1
 if %errorLevel% neq 0 (
