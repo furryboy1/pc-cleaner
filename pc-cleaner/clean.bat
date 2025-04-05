@@ -5,17 +5,12 @@ cls
 :: --- Initialization ----
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 
-for /f "tokens=2 delims=:" %%i in ('"prompt $H & for %%b in (1) do rem"') do set "BS=%%i"
-echo %BS%[?25l%BS%[0m >nul
-
-powershell -Command "$h = Get-StdHandle -11; Set-ConsoleMode $h ((Get-ConsoleMode $h) -bor 4)"
-
-echo [1;33mWARNING!!! The code was rewritten and hasn't been tested.[0m
-echo [1;33mUse at your own risk and report any issues on the GitHub issues page if there are any with the script.[0m
-echo [1;32m^-^-^-^> [1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues [1;32m^<^-^-^-[0m
-echo [0mPress any key to continue or close this window to cancel.[0m
+echo [1;33mWARNING!!! The code was rewritten and hasn't been tested.[0m
+echo [1;33mUse at your own risk and report any issues on the GitHub issues page if there are any within the script.[0m
+echo [1;32m^-^-^-^> [1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues [1;32m^<^-^-^-[0m
+echo [0mPress any key to continue or close this window to cancel.[0m
 pause >nul
-echo [1;32mNow continuing with the script, [1;33myou have been warned.[0m
+echo [1;32mNow continuing with the script, [1;33myou have been warned.[0m
 
 :: Admin Check with better elevation handling
 net session >nul 2>&1
