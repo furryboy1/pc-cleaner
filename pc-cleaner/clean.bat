@@ -1,135 +1,144 @@
-@REM ---start----
 @echo off
+setlocal enabledelayedexpansion
 cls
+
+:: --- Initialization ----
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 
-net session > nul 2>&1
-if %errorLevel% == 0 (
-    goto :admin
-) else (
-    echo Administrative privileges is required to run the cleaner.
-    powershell -Command "Start-Process '%~0' -Verb runAs"
-    exit
+echo [1;33mWARNING!!! The code was rewritten and hasn't been tested.
+echo Use at your own risk and report any issues on the github issues if there are any on the script.
+echo [1;32m---> [1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues [1;32m<---
+echo [0mPress any key to continue or close this window to cancel.
+pause >nul
+echo [1;32mNow continuing with the script, [1;33myou have been warned.
+:: Admin Check with better elevation handling
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    echo [1;33m[!] Administrative privileges required![0m
+    echo [0;36m[~] Restarting with elevated permissions...[0m
+    timeout /t 2 >nul
+    powershell -Command "Start-Process '%~0' -Verb RunAs" >nul 2>&1
+    exit /b
 )
 
 :admin
-echo A restore point is being created in case something goes wrong.
+cls
+echo [1;32m[✓] Running with administrative privileges[0m
 
-for /f "tokens=2 delims== " %%G in ('wmic volume where "driveletter='C:'" get automount') do (
+:: --- Restore Point Creation ----
+echo [1;36m[~] Creating system restore point...[0m
+
+set "restore_enabled=false"
+for /f "tokens=2 delims== " %%G in ('wmic volume where "driveletter='C:'" get automount 2^>nul') do (
     if /i "%%G"=="FALSE" (
-        wmic /namespace:\\root\default path SystemRestore call Enable "C:"
-        echo System protection on C: drive was not enabled to create a restore point. It has now been enabled.
+        wmic /namespace:\\root\default path SystemRestore call Enable "C:" >nul 2>&1
+        set "restore_enabled=true"
     )
 )
 
-wmic /namespace:\\root\default path SystemRestore call CreateRestorePoint "PC Cleaner restore point", 100, 7
+if "!restore_enabled!"=="true" (
+    echo [1;33m[!] Enabled system protection on C: drive[0m
+    timeout /t 3 >nul
+)
+
+wmic /namespace:\\root\default path SystemRestore call CreateRestorePoint "PC Cleaner Restore Point", 100, 7 >nul 2>&1
+echo [1;32m[✓] Restore point created successfully[0m
+timeout /t 2 >nul
 cls
 
+:: --- Cleaning Countdown ----
 title PC Cleaner - Starting... - https://github.com/FurryBoyYT/pc-cleaner
+echo [1;32m[~] Cleaning process starting in:[0m
 for /l %%i in (5,-1,1) do (
-    echo [1;32mCleaning process will start in [0;33m%%i seconds![1;32m
-    echo [1;31mPlease do not close while it's cleaning![0m
-    timeout /nobreak /t 1 > nul
+    echo [1;33m %%i seconds remaining...[0m
+    echo [1;31m[!] DO NOT CLOSE DURING CLEANING![0m
+    timeout /nobreak /t 1 >nul
     cls
 )
+
+:: --- Main Cleaning Routine ----
 title PC Cleaner - Cleaning... - https://github.com/FurryBoyYT/pc-cleaner
 
-@REM ---system----
-echo [1;32mCleaning user temp...[1;31m
-del /f /s /q "%temp%\*"
-for /d %%i in (%temp%\*) do ( rd /s /q "%%i" )
+:: System Temp Cleaners
+call :clean_dir "user temp" "%temp%"
+call :clean_dir "windows temp" "%systemroot%\Temp"
+call :clean_dir "system drive temp" "%systemdrive%\temp"
+call :clean_dir "system temp" "%systemroot%\SystemTemp"
 
-echo.
-echo [1;32mCleaning windows temp...[1;31m
-del /s /f /q "%systemroot%\Temp\*"
-for /d %%i in (%systemroot%\Temp\*) do ( rd /s /q "%%i" )
+:: Windows Error Reporting
+call :clean_dir "WER Temp" "C:\ProgramData\Microsoft\Windows\WER\Temp"
+call :clean_dir "WER Archive" "C:\ProgramData\Microsoft\Windows\WER\ReportArchive"
 
-echo.
-echo [1;32mCleaning system drive temp...[1;31m
-del /s /f /q "%systemdrive%\temp\*"
-for /d %%i in (%systemroot%\temp\*) do ( rd /s /q "%%i" )
+:: Prefetch Cleaner
+if exist "%systemroot%\prefetch\" (
+    echo [1;36m[~] Cleaning windows prefetch...[0m
+    del /f /q "%systemroot%\prefetch\*" >nul 2>&1
+)
 
-echo.
-echo [1;32mCleaning system temp...[1;31m
-del /s /f /q "%systemroot%\SystemTemp\*"
-for /d %%i in (%systemroot%\SystemTemp\*) do ( rd /s /q "%%i" )
+:: Registry Cleanup
+echo [1;36m[~] Cleaning registry cache...[0m
+for %%k in (
+    "HKCR\Local Settings\MuiCache"
+    "HKCU\Software\Classes\Local Settings\MuiCache"
+    "HKU\.DEFAULT\Software\Classes\Local Settings\MuiCache"
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs"
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
+) do reg delete "%%~k" /f >nul 2>&1
 
-echo.
-echo [1;32mCleaning windows error report cache...[1;31m
-del /s /f /q "C:\ProgramData\Microsoft\Windows\WER\Temp\*"
-del /s /f /q "C:\ProgramData\Microsoft\Windows\WER\ReportArchive\*"
-
-echo.
-echo [1;32mCleaning windows prefetch...[1;31m
-del /s /f /q "%systemroot%\prefetch\*"
-
-echo.
-echo [1;32mCleaning registry cache...[1;31m
-reg delete "HKEY_CLASSES_ROOT\Local Settings\MuiCache" /f
-reg delete "HKEY_CURRENT_USER\Software\Classes\Local Settings\MuiCache" /f
-reg delete "HKEY_USERS\.DEFAULT\Software\Classes\Local Settings\MuiCache" /f
-reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs" /f
-reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" /f
-
-reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired" > nul
-if %errorlevel% == 1 (
-    echo.
+:: Windows Update Cleanup (Improved)
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired" >nul 2>&1
+if errorlevel 1 (
     set "IS_PENDING_UPDATES=0"
-    echo [1;32mCleaning software distribution download cache...[1;31m
-    del /s /f /q "%systemroot%\SoftwareDistribution\Download"
+    call :clean_dir "software distribution" "%systemroot%\SoftwareDistribution\Download"
 ) else (
     set "IS_PENDING_UPDATES=1"
+    echo [1;33m[!] Skipping Windows Update cleanup - pending reboot required[0m
 )
 
-@REM ----roblox-----
-echo.
-echo [1;32mCleaning Roblox logs...[1;31m
-del /q /s "%localappdata%\Roblox\logs\*"
+:: Roblox Cleaners
+call :clean_dir "Roblox logs" "%localappdata%\Roblox\logs"
+call :clean_dir "Roblox downloads" "%localappdata%\Roblox\Downloads"
+call :clean_dir "Bloxstrap downloads" "%localappdata%\Bloxstrap\Downloads"
+call :clean_dir "Bloxstrap logs" "%localappdata%\Bloxstrap\Logs"
 
-echo.
-echo [1;32mCleaning Roblox downloads cache...[1;31m
-del /q /s "%localappdata%\Roblox\Downloads\*"
+:: System Maintenance
+call :clean_dir "crash dumps" "%localappdata%\CrashDumps"
+call :clean_dir "downloaded files" "%systemroot%\Downloaded Program Files"
 
-echo.
-echo [1;32mCleaning Bloxstrap downloads cache...[1;31m
-del /q /s "%localappdata%\Bloxstrap\Downloads\*"
+:: Network Configuration
+echo [1;36m[~] Resetting network configuration...[0m
+ipconfig /flushdns >nul && echo [1;32m[✓] DNS cache flushed[0m
+ipconfig /registerdns >nul && echo [1;32m[✓] DNS registration refreshed[0m
+ipconfig /release >nul && echo [1;32m[✓] IP addresses released[0m
+ipconfig /renew >nul && echo [1;32m[✓] IP addresses renewed[0m
 
-echo.
-echo [1;32mCleaning Bloxstrap logs...[1;31m
-del /q /s "%localappdata%\Bloxstrap\Logs\*"
+:: Memory Optimization
+powershell -Command "Disable-MMAgent -MemoryCompression -ErrorAction SilentlyContinue" >nul 2>&1
+echo [1;32m[✓] Memory compression disabled[0m
 
-@REM ----other-----
-echo.
-echo [1;32mCleaning crash dump files...[1;31m
-del /q /s "%localappdata%\CrashDumps\*"
-
-echo.
-echo [1;32mCleaning downloaded program files...[1;31m
-del /q "%systemroot%\Downloaded Program Files\*"
-
-echo.
-echo [1;32mConfigurating IP Config... (hidden for security reasons)[1;31m
-echo WARNING! Your internet may interrupt during this operation.
-ipconfig /flushdns > nul
-echo Flushed DNS!
-ipconfig /registerdns > nul
-echo Registered DNS!
-ipconfig /release > nul
-echo Released!
-ipconfig /renew > nul
-echo Renewed!
-
-powershell -Command "Disable-MMAgent -MemoryCompression" > nul
-echo Memory compression disabled!
-
+:: --- Finalization ----
 title PC Cleaner - Finished! - https://github.com/FurryBoyYT/pc-cleaner
 echo.
-echo [1;32mPC Cleaning finished!
-echo Exiting in 10 seconds.
+echo [1;32m[✓] PC Cleaning completed successfully![0m
+
 if %IS_PENDING_UPDATES% == 1 (
-    echo Skipped cleaning software distribution download cache,
-    echo There are pending windows updates.
+    echo [1;33m[!] Note: Windows Update cleanup skipped - pending updates require reboot[0m
 )
-timeout /nobreak /t 10 > nul
+
+echo.
+echo [0;36m[~] Exiting in 10 seconds...[0m
+timeout /nobreak /t 10 >nul
 exit /b
-@REM ----end-----
+
+:: --- Functions ----
+:clean_dir
+echo.
+echo [1;36m[~] Cleaning %~1...[0m
+if exist "%~2\" (
+    del /f /s /q "%~2\*" >nul 2>&1
+    for /d %%i in ("%~2\*") do rd /s /q "%%i" >nul 2>&1
+    echo [1;32m[✓] %~1 cleaned[0m
+) else (
+    echo [1;33m[!] %~1 directory not found[0m
+)
+exit /b
