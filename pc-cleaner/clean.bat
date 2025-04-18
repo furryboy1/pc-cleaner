@@ -5,7 +5,7 @@ cls
 :: --- Initialization ----
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 
-echo [1;33mWARNING!!! The code was rewritten and hasn't been tested.[0m
+echo [1;33mWARNING^!^!^! The code was rewritten with some new paths as of April 5, 2025 and hasn't been tested.[0m
 echo [1;33mUse at your own risk and report any issues on the GitHub issues page if there are any within the script.[0m
 echo [1;32m^-^-^-^> [1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues [1;32m^<^-^-^-[0m
 echo [0mPress any key to continue or close this window to cancel.[0m
