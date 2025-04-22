@@ -7,7 +7,9 @@ title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 echo [1;33mWARNING! The code was rewritten with some new paths as of April 5, 2025 and hasn't been tested.
 echo [1;33mUse at your own risk and report any issues on the GitHub issues page if there are any within the script.
 echo [1;32m^-^-^-^> [4;34m[1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues[0m [1;32m^<^-^-^-
-set /p userInput=[1;33mType "I agree" to continue: [0m
+echo.
+echo [1;33mType [1;36m"I agree" [1;33mto continue.[0m
+set /p "userInput=>"
 if /i not "%userInput%"=="i agree" (
     echo [1;31mYou did not agree. Exiting in 3 seconds...[0m
     timeout /t 3 >nul
