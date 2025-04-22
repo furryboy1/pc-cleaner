@@ -1,0 +1,2 @@
+echo [0mPress any key to continue or close this window to cancel.
+pause >nul
