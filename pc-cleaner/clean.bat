@@ -4,6 +4,16 @@ cls
 :: --- Initialization ----
 title PC Cleaner - Loading... - https://github.com/FurryBoyYT/pc-cleaner
 
+:: Admin Check with better elevation handling
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    echo [1;33m[!] Administrative privileges required![0m
+    echo [0;36m[~] Restarting with elevated permissions...[0m
+    timeout /t 2 >nul
+    powershell -Command "Start-Process '%~0' -Verb RunAs" >nul 2>&1
+    exit /b
+)
+
 echo [1;33mWARNING! The code was rewritten with some new paths as of April 5, 2025 and hasn't been tested.
 echo [1;33mUse at your own risk and report any issues on the GitHub issues page if there are any within the script.
 echo [1;32m^-^-^-^> [4;34m[1;36mhttps://github.com/FurryBoyYT/pc-cleaner/issues[0m [1;32m^<^-^-^-
@@ -17,18 +27,8 @@ if /i not "%userInput%"=="i agree" (
 )
 echo [1;32mNow continuing with the script, [1;33myou have been warned.[0m
 
-setlocal enabledelayedexpansion
-:: Admin Check with better elevation handling
-net session >nul 2>&1
-if %errorLevel% neq 0 (
-    echo [1;33m[!] Administrative privileges required![0m
-    echo [0;36m[~] Restarting with elevated permissions...[0m
-    timeout /t 2 >nul
-    powershell -Command "Start-Process '%~0' -Verb RunAs" >nul 2>&1
-    exit /b
-)
-
 :admin
+setlocal enabledelayedexpansion
 cls
 echo [1;32m[✓] Running with administrative privileges[0m
 
