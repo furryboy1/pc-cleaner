@@ -57,7 +57,11 @@ cls
 title PC Cleaner - Starting... - https://github.com/FurryBoyYT/pc-cleaner
 echo [1;32m[~] Cleaning process starting in:[0m
 for /l %%i in (5,-1,1) do (
-    echo [1;33m %%i seconds remaining...[0m
+    if %%i equ 1 (
+        echo [1;33m Begin cleaning in %%i second...[0m
+    ) else (
+        echo [1;33m Begin cleaning in %%i seconds...[0m
+    )
     echo [1;31m[!] DO NOT CLOSE DURING CLEANING![0m
     timeout /nobreak /t 1 >nul
     cls
