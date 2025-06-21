@@ -109,6 +109,13 @@ if errorlevel 1 (
 :: Roblox Cleaners
 call :clean_dir "Roblox logs" "%localappdata%\Roblox\logs"
 call :clean_dir "Roblox downloads" "%localappdata%\Roblox\Downloads"
+call :clean_dir "Roblox http cache" "%localappdata%\Roblox\rbx-storage"
+echo [1;36m[~] Cleaning other Roblox files...[0m
+del /f /s /q "C:\Users\bogda\AppData\Local\Roblox\rbx-storage.db" >nul 2>&1
+del /f /s /q "C:\Users\bogda\AppData\Local\Roblox\rbx-storage.db-shm" >nul 2>&1
+del /f /s /q "C:\Users\bogda\AppData\Local\Roblox\rbx-storage.db-wal" >nul 2>&1
+del /f /s /q "C:\Users\bogda\AppData\Local\Roblox\rbx-storage.id" >nul 2>&1
+del /f /s /q "C:\Users\bogda\AppData\Local\Roblox\server.rbxl" >nul 2>&1
 call :clean_dir "Bloxstrap downloads" "%localappdata%\Bloxstrap\Downloads"
 call :clean_dir "Bloxstrap logs" "%localappdata%\Bloxstrap\Logs"
 
